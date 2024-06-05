@@ -3,6 +3,7 @@ package giovannighirardelli.entities;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table(name = "evento")
@@ -21,6 +22,9 @@ public class Evento {
     private TipoEvento tipoEvento;
     @Column(name = "numero_massimo_partecipanti")
     private int numeroMassimoPartecipanti;
+
+    @OneToMany(mappedBy = "evento")
+    private List<Partecipazione> partecipazioneList;
 
     public Evento() {
     }
@@ -76,6 +80,10 @@ public class Evento {
 
     public void setNumeroMassimoPartecipanti(int numeroMassimoPartecipanti) {
         this.numeroMassimoPartecipanti = numeroMassimoPartecipanti;
+    }
+
+    public List<Partecipazione> getPartecipazioneList() {
+        return partecipazioneList;
     }
 
     @Override
